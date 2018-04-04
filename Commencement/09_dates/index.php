@@ -45,7 +45,7 @@
     <style media="screen">
       table {
         border: 1px solid black;
-        width: 50%;
+        width: 100%;
       }
       tr{
         border: 1px solid black;
@@ -53,7 +53,6 @@
       th {
         text-align: center;
         color: red;
-        width: 100%;
         border: 1px solid black;
       }
       td {
@@ -68,7 +67,7 @@
       <fieldset>
         <form action="index.php" method="POST">
           Mois : <br>
-          <select name="mois">
+          <select name="month">
             <option></option>
             <option>Janvier</option>
             <option>Février</option>
@@ -84,7 +83,7 @@
             <option>Décembre</option>
           </select> <br>
           Année : <br>
-          <select name="annee">
+          <select name="year">
             <option></option>
             <option>2000</option>
             <option>2001</option>
@@ -111,20 +110,71 @@
           <input type="submit" name="send" value="Envoyer">
           <br>
   <?php
-    echo "<br>";
-    if (isset($_POST["send"])) {
-      $mois = $_POST["mois"];
-      $annee = $_POST["annee"];
-      $JourDsMois = cal_days_in_month(CAL_GREGORIAN, $mois, $annee);
-      echo "il y a " .$JourDsMois;
+    function build_calendar($month,$year,$dateArray) {
+       // Create array days of week.
+       $daysOfWeek = array('Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi');
+       // What is the first day of the month in question?
+       $firstDayOfMonth = mktime(0,0,0,$month,1,$year);
+       // How many days does this month contain?
+       $numberDays = date('t',$firstDayOfMonth);
+       // Retrieve some information about the first day of the
+       // month in question.
+       $dateComponents = getdate($firstDayOfMonth);
+       // What is the name of the month in question?
+       $monthName = $dateComponents['month'];
+       // What is the index value (0-6) of the first day of the
+       // month in question.
+       $dayOfWeek = $dateComponents['wday'];
+       // Create the table tag opener and day headers
+       $calendar = "<table class='calendar'>";
+       $calendar .= "<caption>$monthName $year</caption>";
+       $calendar .= "<tr>";
+       // Create the calendar headers
+       foreach($daysOfWeek as $day) {
+            $calendar .= "<th class='header'>$day</th>";
+       }
+       // Create the rest of the calendar
+       // Initiate the day counter, starting with the 1st.
+       $currentDay = 1;
+       $calendar .= "</tr><tr>";
+       // The variable $dayOfWeek is used to
+       // ensure that the calendar
+       // display consists of exactly 7 columns.
+       if ($dayOfWeek > 0) {
+            $calendar .= "<td colspan='$dayOfWeek'>&nbsp;</td>";
+       }
+       $month = str_pad($month, 2, "0", STR_PAD_LEFT);
+       while ($currentDay <= $numberDays) {
+            // Seventh column (Saturday) reached. Start a new row.
+          if ($dayOfWeek == 7) {
+               $dayOfWeek = 0;
+               $calendar .= "</tr><tr>";
+          }
+          $currentDayRel = str_pad($currentDay, 2, "0", STR_PAD_LEFT);
+          $date = "$year-$month-$currentDayRel";
+          $calendar .= "<td class='day' rel='$date'>$currentDay</td>";
+          // Increment counters
+          $currentDay++;
+          $dayOfWeek++;
+        }
+       // Complete the row of the last week in month, if necessary
+       if ($dayOfWeek != 7) {
+            $remainingDays = 7 - $dayOfWeek;
+            $calendar .= "<td colspan='$remainingDays'>&nbsp;</td>";
+       }
+       $calendar .= "</tr>";
+       $calendar .= "</table>";
+       return $calendar;
+     }
 
-      echo "<table>";
-      echo "<th>".$_POST["mois"] ." " .$_POST["annee"] ."</th>";
-      echo "</table>";
-      echo "<table>";
-      echo "<tr><td>Lundi</td><td>Mardi</td><td>Mercredi</td><td>Jeudi</td><td>Vendredi</td><td>Samedi</td><td>Dimanche</td></tr>";
-      echo "</table>";
-  }
+    $dateComponents = getdate();
+    // $month = $dateComponents['mon']; // today's calendar
+    // $year = $dateComponents['year']; // today's calendar
+    $month = $_POST['month'];
+    $year = $_POST['year'];
+    if (isset($_POST['month']) && isset($_POST['year'])) {
+    echo build_calendar($month,$year,$dateArray);
+    }
   ?>
         </form>
       </fieldset>

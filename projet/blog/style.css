@@ -1,0 +1,72 @@
+h1, h3 {
+    text-align:center;
+}
+
+h3 {
+    background-color:black;
+    color:white;
+    font-size:0.9em;
+    margin-bottom:0px;
+}
+
+.news p {
+    background-color:#CCCCCC;
+    margin-top:0px;
+    margin-bottom: 0px;
+    padding-left: 5px;
+}
+
+.center {
+  text-align: center;
+}
+
+.float {
+  float: right;
+  padding-right: 5px;
+}
+
+.blanc {
+  color: white;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.news {
+    width:70%;
+    margin:auto;
+}
+
+.width {
+  width: 100px;
+  display: inline-block;
+}
+
+.square {
+  text-align: center;
+  width : 20px;
+  display: inline-block;
+  border: 1px solid grey;
+  background-color: lightgrey;
+  box-shadow: 0.5px 0.5px;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.inline {
+  display: inline-block;
+}
+
+fieldset {
+  width: 400px;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}

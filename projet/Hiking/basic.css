@@ -1,0 +1,104 @@
+header {
+  width: 100%;
+  height: 50px;
+  background-image: url(ciel.jpeg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.login, .signin, .logout {
+  margin-top: 13px;
+  width: 50px;
+  text-align: center;
+  float: right;
+}
+
+.logout, .signin {
+  margin-right: 10px;
+}
+
+.gauche {
+  margin-top: 13px;
+  float: left;
+  margin-left: 10px;
+}
+
+.milieu {
+  margin-top: 13px;
+}
+
+.a {
+  color: white;
+  text-decoration: none;
+}
+
+label, select, input{
+  width: 150px;
+  display: inline-block;
+  margin: 5px 0;
+  text-align: left;
+}
+
+label {
+  text-align: left;
+}
+
+.radio {
+  width: 15px;
+  margin-right: 10px;
+}
+
+.radioNon {
+  margin-left: 10px;
+}
+
+.form {
+  padding-left: 40%;
+  /* padding-right: 30%; */
+}
+
+h1 {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+table {
+  margin: auto;
+}
+th, .td {
+  text-align: center;
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.button {
+  width: 100%;
+  height: 50px;;
+  padding:0;
+  margin:0;
+}
+
+.tdSpec {
+  padding:0;
+  margin:0;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.center {
+  padding-left: 12%;
+}
+
+.supp {
+  width: 100px;
+  text-align: center;
+}

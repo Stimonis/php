@@ -8,7 +8,7 @@
   $prenom = $_GET["prenom"];
   $age = $_GET["age"];
   if ($age === null) {
-    echo "connard";
+    echo "null";
   } else {
     echo $age;
   };
