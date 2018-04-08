@@ -1,7 +1,6 @@
 <?php
   include 'PDO.php';
-
-	// On utilise alors un petit javascript lui signalant ce fait
+	
 	session_start();
   // var_dump($_SESSION);
 	if (isset($_SESSION['userName']) && isset($_SESSION['password'])) {

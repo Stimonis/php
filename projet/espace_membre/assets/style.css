@@ -1,0 +1,19 @@
+fieldset {
+    width: 450px;
+    text-align: center;
+}
+
+label {
+    width: 190px;
+    display: inline-block;
+    text-align: left;
+    margin-bottom: 7px;
+}
+
+#connex {
+    margin-right: 150px;
+}
+
+input {
+    margin-bottom: 7px;
+}
