@@ -11,7 +11,7 @@
     <fieldset>
         <legend>Login</legend>
         <br>
-        <form action="../model/login_model.php" method="post">
+        <form action="../controller/login_controller.php" method="post">
             <label for="pseudo">Pseudo</label>
             <input type="text" id="pseudo" name="pseudo"> <br>
             <label for="pass">Mot de passe</label>

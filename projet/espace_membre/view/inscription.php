@@ -11,7 +11,7 @@
     <fieldset>
         <legend>Inscription</legend>
         <br>
-        <form action="../model/inscription_model.php" method="post">
+        <form action="../controller/inscription_controller.php" method="post">
             <label for="pseudo">Pseudo </label>
             <input type="text" name="pseudo" id="pseudo"> <br>
             <label for="password">Mot de passe:</label>

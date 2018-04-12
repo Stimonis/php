@@ -1,6 +1,6 @@
 <?php
 
-    include '../controller/PDO.php';
+    include '../PDO.php';
 
     $pseudo = $_POST['pseudo'];
     $password = $_POST['password'];
@@ -15,22 +15,24 @@
     //var_dump($password, $donnees['pass'], $passCorrect);
 
     if (!$donnees) {
-        echo 'identifiant ou mot de passe incorrect !';
+        $m =  'identifiant ou mot de passe incorrect !'; 
+        include '../view/messages.php';
     } else {
         if (!$passCorrect) {
             session_start();
-            $_SESSION['id'] = $donnees['id'];
-            $_SESSION['pass'] = $donnees['pass'];
-            $_SESSION['pseudo'] = $donnees['pseudo'];
-            // dureelimite servira à déconnecter la session automatiquement après 30mins
-            $_SESSION['dureelimite'] = date("G:i:s", strtotime("+30 minutes")); 
-            // var_dump($_SESSION);
-            // var_dump($dureelimite);
-            echo 'Vous êtes connecté !' ;
+            $_SESSION['user'] = array (
+                'id' => $donnees['id'],
+                'pass' => $donnees['pass'],
+                'pseudo' => $donnees['pseudo'],
+                'dureeLimite' => time()
+            );
+           
+            // echo 'Vous êtes connecté !' ;
             // var_dump($_SESSION);
             header('Location: ../index.php');
         } else {
-            echo 'Mot de passe incorrect !';
+            $m =  'Mot de passe incorrect !';
+            include '../view/messages.php';
         }
     }
 

@@ -1,6 +1,6 @@
 <?php 
 
-    include '../controller/PDO.php';
+    include '../PDO.php';
 
     $pseudo = $_POST['pseudo'];
     $pass = $_POST['password'];
@@ -8,8 +8,10 @@
     $email = $_POST['email'];
 
     if ( empty($pseudo) || empty($pass) || empty($pass2) || empty($email)) {
-        echo 'un champs n\'a pas été rempli';
-        echo '<a href="../index.php">Retour</a>';
+        $m= 'un champs n\'a pas été rempli';
+        $l= '<a href="../index.php">Retour</a>';
+        include '../view/messages.php';
+        
     } else {      
         if ( $pass == $pass2 ) {
             $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -22,11 +24,11 @@
             $myrequest->bindParam(':email', $email, PDO::PARAM_STR);
             
             $myrequest->execute();
-            echo 'Inscription réussie';
             header('Location: ../view/login.php');
         } else {
-            echo 'vous avez fait une erreur en retapant votre mot de passe';
-            echo '<br><a href="../index.php">Retour</a>';
+            $m='vous avez fait une erreur en retapant votre mot de passe';
+            $l= '<br><a href="../index.php">Retour</a>';
+            include '../view/messages.php';
         }
     }
 
